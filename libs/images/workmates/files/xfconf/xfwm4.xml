@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Workmates window manager defaults (system-wide, /etc/xdg): the
+     Greybird-dark frame, Inter titles, new windows centered. Everything
+     not named here keeps xfwm4's own default. -->
+<channel name="xfwm4" version="1.0">
+  <property name="general" type="empty">
+    <property name="theme" type="string" value="Greybird-dark"/>
+    <property name="title_font" type="string" value="Inter Bold 10"/>
+    <property name="title_alignment" type="string" value="center"/>
+    <property name="button_layout" type="string" value="O|HMC"/>
+    <property name="placement_mode" type="string" value="center"/>
+    <property name="use_compositing" type="bool" value="true"/>
+    <property name="show_frame_shadow" type="bool" value="true"/>
+    <property name="show_popup_shadow" type="bool" value="false"/>
+  </property>
+</channel>

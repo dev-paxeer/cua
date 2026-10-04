@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Terminal
+GenericName=Terminal Emulator
+Comment=Run commands
+Exec=xfce4-terminal
+TryExec=xfce4-terminal
+Icon=workmates-terminal
+Terminal=false
+Categories=GTK;System;TerminalEmulator;
+StartupNotify=true
+StartupWMClass=Xfce4-terminal

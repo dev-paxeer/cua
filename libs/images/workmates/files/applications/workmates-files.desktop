@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Files
+GenericName=File Manager
+Comment=Browse the file system
+Exec=thunar %F
+TryExec=thunar
+Icon=workmates-files
+Terminal=false
+Categories=System;Utility;Core;GTK;FileTools;FileManager;
+MimeType=inode/directory;
+StartupNotify=true
+StartupWMClass=Thunar

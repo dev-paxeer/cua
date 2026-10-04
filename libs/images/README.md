@@ -9,6 +9,7 @@ Reference guest images for the cua SDK, built for amd64 and arm64:
 | `plain/ubuntu-server` | Ubuntu 24.04 and OpenSSH | Proving that sandboxes don't need cua daemons (SSH only) |
 | `macos` | The Lume macOS base plus **cua-spacesd** at login, TCC grants seeded (see [macOS](#macos-lume)) | `ghcr.io/trycua/macos`, local Lume on Apple silicon |
 | `omarchy` | Omarchy edge (Arch, Hyprland) with Omarchy's `cua-driver-bin` and `cua-hyprland-plugin` turned on, plus **cua-spacesd**. VM only, amd64 | `ghcr.io/trycua/omarchy:edge` ([guide](../../docs/content/docs/cua-sdk/guides/omarchy.mdx)) |
+| `workmates` | `linux` (the full tier) with the Workmates desktop: wallpaper, a centered dock with the Workmates browser, files and terminal icons, Greybird-dark and Inter; no top panel, no desktop icons. Same guest, same claims | The Workmates agent desktop: `ghcr.io/dev-paxeer/workmates-linux:24.04` ([workmates/README.md](workmates/README.md)) |
 
 `cua sb create linux` resolves to `ghcr.io/trycua/linux:24.04`; pass any of these references (or a local tag) as the image, with `--on local|docker|qemu|fleet`. The same image runs locally and on Fleet.
 

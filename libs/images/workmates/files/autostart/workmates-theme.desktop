@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Workmates desktop theme
+Comment=Applies the Workmates wallpaper to every monitor once xfdesktop is up
+Exec=/opt/workmates/bin/workmates-apply-theme
+OnlyShowIn=XFCE;
+NoDisplay=true
+Terminal=false
+StartupNotify=false
+X-GNOME-Autostart-enabled=true

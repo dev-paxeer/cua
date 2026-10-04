@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Workmates desktop theme: run by XFCE autostart inside the desktop session.
+#
+# xfdesktop keys the backdrop by the X output's name
+# (/backdrop/screen0/monitor<NAME>/workspace<N>/last-image), and that name
+# depends on the X server: "screen" under Xvfb, "VNC-0" under TigerVNC, the
+# virtual output of a VM. The xfconf defaults in /etc/xdg name the common
+# ones; this sets the Workmates wallpaper on every monitor xfdesktop or
+# xrandr actually reports, so a new or renamed output never shows the stock
+# backdrop. Idempotent: safe to run again after a resolution change.
+set -u
+
+WALLPAPER=/usr/share/backgrounds/workmates/workmates.jpg
+CHANNEL=xfce4-desktop
+IMAGE_STYLE=5 # zoomed: fill the screen, keep the aspect ratio
+COLOR_STYLE=0 # solid colour under it
+
+log() { echo "workmates-apply-theme: $*" >&2; }
+
+[ -r "$WALLPAPER" ] || { log "$WALLPAPER is missing"; exit 1; }
+command -v xfconf-query >/dev/null 2>&1 || { log "xfconf-query not found"; exit 1; }
+
+# xfdesktop creates the per-monitor keys on its first paint; wait for it.
+for _ in $(seq 1 60); do
+    pgrep -x xfdesktop >/dev/null 2>&1 && break
+    sleep 0.5
+done
+sleep 1
+
+monitors=""
+# Every monitor xfdesktop already knows about.
+while IFS= read -r prop; do
+    m=${prop#/backdrop/screen0/monitor}
+    monitors="$monitors ${m%%/*}"
+done < <(xfconf-query -c "$CHANNEL" -l 2>/dev/null | grep -E '^/backdrop/screen0/monitor[^/]+/workspace[0-9]+/' || true)
+# And every connected output, for the keys it has not created yet.
+if command -v xrandr >/dev/null 2>&1; then
+    while IFS= read -r out; do
+        monitors="$monitors $out"
+    done < <(xrandr --query 2>/dev/null | awk '$2 == "connected" { print $1 }')
+fi
+
+applied=0
+# shellcheck disable=SC2086
+for m in $(printf '%s\n' $monitors | sort -u); do
+    for ws in 0 1 2 3; do
+        base="/backdrop/screen0/monitor$m/workspace$ws"
+        if xfconf-query -c "$CHANNEL" -p "$base/last-image" -n -t string -s "$WALLPAPER" \
+            && xfconf-query -c "$CHANNEL" -p "$base/image-style" -n -t int -s "$IMAGE_STYLE" \
+            && xfconf-query -c "$CHANNEL" -p "$base/color-style" -n -t int -s "$COLOR_STYLE"; then
+            applied=$((applied + 1))
+        fi
+    done
+done
+xfconf-query -c "$CHANNEL" -p /backdrop/single-workspace-mode -n -t bool -s true
+xfconf-query -c "$CHANNEL" -p /desktop-icons/style -n -t int -s 0
+log "wallpaper set on $applied monitor/workspace keys"
+# xfdesktop follows xfconf live; --reload also repaints right after its start.
+xfdesktop --reload >/dev/null 2>&1 || true

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Workmates desktop defaults (system-wide, /etc/xdg): the wallpaper on
+     every monitor name xfdesktop may use (Xvfb reports "screen", TigerVNC
+     "VNC-0", QEMU's virtio-gpu "Virtual-1"; workmates-apply-theme covers
+     any other), zoomed to fill over the wallpaper's own dark tone, one
+     backdrop for every workspace, and no desktop icons. -->
+<channel name="xfce4-desktop" version="1.0">
+  <property name="backdrop" type="empty">
+    <property name="single-workspace-mode" type="bool" value="true"/>
+    <property name="single-workspace-number" type="int" value="0"/>
+    <property name="screen0" type="empty">
+      <property name="monitorscreen" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/workmates/workmates.jpg"/>
+          <property name="rgba1" type="array">
+            <value type="double" value="0.015686"/>
+            <value type="double" value="0.019608"/>
+            <value type="double" value="0.027451"/>
+            <value type="double" value="1.000000"/>
+          </property>
+        </property>
+      </property>
+      <property name="monitorVNC-0" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/workmates/workmates.jpg"/>
+          <property name="rgba1" type="array">
+            <value type="double" value="0.015686"/>
+            <value type="double" value="0.019608"/>
+            <value type="double" value="0.027451"/>
+            <value type="double" value="1.000000"/>
+          </property>
+        </property>
+      </property>
+      <property name="monitorVirtual-1" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/workmates/workmates.jpg"/>
+          <property name="rgba1" type="array">
+            <value type="double" value="0.015686"/>
+            <value type="double" value="0.019608"/>
+            <value type="double" value="0.027451"/>
+            <value type="double" value="1.000000"/>
+          </property>
+        </property>
+      </property>
+      <property name="monitor0" type="empty">
+        <property name="workspace0" type="empty">
+          <property name="color-style" type="int" value="0"/>
+          <property name="image-style" type="int" value="5"/>
+          <property name="last-image" type="string" value="/usr/share/backgrounds/workmates/workmates.jpg"/>
+          <property name="rgba1" type="array">
+            <value type="double" value="0.015686"/>
+            <value type="double" value="0.019608"/>
+            <value type="double" value="0.027451"/>
+            <value type="double" value="1.000000"/>
+          </property>
+        </property>
+      </property>
+    </property>
+  </property>
+  <property name="desktop-icons" type="empty">
+    <property name="style" type="int" value="0"/>
+  </property>
+  <property name="desktop-menu" type="empty">
+    <property name="show" type="bool" value="true"/>
+  </property>
+</channel>

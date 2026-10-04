@@ -166,6 +166,13 @@
         "scripts/images/docs-image-refs-baseline.json"
       ]
     },
+    "ghcr.io/dev-paxeer/workmates-linux:24.04": {
+      "reason": "the Workmates desktop image, libs/images/workmates, published to this fork's registry (the catalog validator only takes ghcr.io/trycua repositories)",
+      "paths": [
+        "libs/images/workmates/**",
+        "libs/images/README.md"
+      ]
+    },
     "ghcr.io/trycua/bench-demo:1.0-20260923-abcdef1": {
       "reason": "synthetic tag or digest in a test (parser, resolver or tag-safety input), never pulled",
       "paths": [
